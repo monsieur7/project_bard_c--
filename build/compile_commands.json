@@ -1,0 +1,22 @@
+[
+{
+  "directory": "/home/nolane/Desktop/ESIREM/SYSTEME_EMBARQUEES/project_bard_c++/build",
+  "command": "/usr/bin/c++ -g -o CMakeFiles/project_bard.dir/main.cpp.o -c /home/nolane/Desktop/ESIREM/SYSTEME_EMBARQUEES/project_bard_c++/main.cpp",
+  "file": "/home/nolane/Desktop/ESIREM/SYSTEME_EMBARQUEES/project_bard_c++/main.cpp"
+},
+{
+  "directory": "/home/nolane/Desktop/ESIREM/SYSTEME_EMBARQUEES/project_bard_c++/build",
+  "command": "/usr/bin/c++ -g -o CMakeFiles/project_bard.dir/src/case.cpp.o -c /home/nolane/Desktop/ESIREM/SYSTEME_EMBARQUEES/project_bard_c++/src/case.cpp",
+  "file": "/home/nolane/Desktop/ESIREM/SYSTEME_EMBARQUEES/project_bard_c++/src/case.cpp"
+},
+{
+  "directory": "/home/nolane/Desktop/ESIREM/SYSTEME_EMBARQUEES/project_bard_c++/build",
+  "command": "/usr/bin/c++ -g -o CMakeFiles/project_bard.dir/src/ncurses_draw.cpp.o -c /home/nolane/Desktop/ESIREM/SYSTEME_EMBARQUEES/project_bard_c++/src/ncurses_draw.cpp",
+  "file": "/home/nolane/Desktop/ESIREM/SYSTEME_EMBARQUEES/project_bard_c++/src/ncurses_draw.cpp"
+},
+{
+  "directory": "/home/nolane/Desktop/ESIREM/SYSTEME_EMBARQUEES/project_bard_c++/build",
+  "command": "/usr/bin/c++ -g -o CMakeFiles/project_bard.dir/src/maze.cpp.o -c /home/nolane/Desktop/ESIREM/SYSTEME_EMBARQUEES/project_bard_c++/src/maze.cpp",
+  "file": "/home/nolane/Desktop/ESIREM/SYSTEME_EMBARQUEES/project_bard_c++/src/maze.cpp"
+}
+]

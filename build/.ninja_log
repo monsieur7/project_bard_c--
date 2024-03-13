@@ -1,0 +1,14 @@
+# ninja log v5
+1	542	1710347999151057537	CMakeFiles/project_bard.dir/main.cpp.o	4dde1f5af9bc4bf
+1	672	1710323823292700618	CMakeFiles/project_bard.dir/labyrinth.cpp.o	6feb6526a529f9cc
+462	587	1710347831018402696	project_bard	2237808ad53f88ba
+1	650	1710323853584785855	CMakeFiles/project_bard.dir/generation.cpp.o	75907f62b0293623
+1	492	1710345985039679482	CMakeFiles/project_bard.dir/case.cpp.o	accc91d726545eeb
+1	1325	1710347537173174618	CMakeFiles/project_bard.dir/maze.cpp.o	4568c51b5df2fca9
+1	385	1710347633469585456	CMakeFiles/project_bard.dir/ncurses_draw.cpp.o	6d2ef1c3b8a351a7
+1	556	1710348027415164396	CMakeFiles/project_bard.dir/main.cpp.o	4dde1f5af9bc4bf
+0	567	1710348054139264637	CMakeFiles/project_bard.dir/main.cpp.o	4dde1f5af9bc4bf
+2	461	1710348061675292768	CMakeFiles/project_bard.dir/src/ncurses_draw.cpp.o	44b188b99cf7f4
+1	1603	1710348069379321465	CMakeFiles/project_bard.dir/src/maze.cpp.o	6c5aed20ef649ad3
+1	387	1710348077927353235	CMakeFiles/project_bard.dir/src/case.cpp.o	30629946ffbd56bb
+387	521	1710348078059353725	project_bard	12a4e5daafb67ae
