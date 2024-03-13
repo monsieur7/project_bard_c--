@@ -31,6 +31,5 @@ public:
     void generate(int x, int y, int tx, int ty);
     void setStart(int x, int y);
     void setEnd(int x, int y);
-    void loadMaze(const std::string &filename);
 };
 #endif
