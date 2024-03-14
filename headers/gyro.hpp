@@ -6,11 +6,11 @@ private:
     int y;
     int z;
     bool status;
+    void gyro_launch();
 public:
 
     double  getx();
     double  gety();
-    double getz();
-    void gyro_launch();
-    void gyro_stop();
+    double  getz();
+
 };
