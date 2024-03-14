@@ -1,5 +1,6 @@
 
-class gyro{
+class Gyro
+{
 
 private:
     int x;
@@ -7,10 +8,11 @@ private:
     int z;
     bool status;
     void gyro_launch();
+
 public:
-
-    double  getx();
-    double  gety();
-    double  getz();
-
+    Gyro();
+    ~Gyro();
+    double getx();
+    double gety();
+    double getz();
 };

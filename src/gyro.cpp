@@ -7,21 +7,21 @@
 #include <sensehat.h>
 #include "../headers/gyro.hpp"
 
-
-gyro::gyro()
+Gyro::Gyro() // Corrected constructor name
 {
 	this->x = 0;
 	this->y = 0;
 	this->z = 0;
 	this->status = 0;
-	std::thread(&gyro::gyro_launch(), this);
+	std::thread(&Gyro::gyro_launch, this); // Corrected thread creation
 }
-gyro::~gyro()
+
+Gyro::~Gyro() // Corrected destructor name
 {
 	this->status = 0;
 }
 
-void gyro::gyro_launch()
+void Gyro::gyro_launch()
 {
 	status = 1;
 	double xx, yy, zz;
@@ -29,7 +29,7 @@ void gyro::gyro_launch()
 	{
 		for (int time = 0; time < 10; time++)
 		{
-			std::chrono::sleep_for(milliseconds(1));
+			std::this_thread::sleep_for(std::chrono::milliseconds(1));
 			std::cout << "Gyrometer in radians/s." << std::endl;
 			if (senseGetGyroRadians(xx, yy, zz))
 			{
@@ -38,22 +38,23 @@ void gyro::gyro_launch()
 				z = zz;
 			}
 			else
-				cout << "Error. No measures." << endl;
+				std::cout << "Error. No measures." << std::endl;
 		}
 	}
 	std::cout << "end measure";
 }
 
-double gyro::getx()
+double Gyro::getx()
 {
 	return x;
 }
-double gyro::gety()
+
+double Gyro::gety()
 {
 	return y;
 }
 
-double gyro::getz()
+double Gyro::getz()
 {
 	return z;
 }

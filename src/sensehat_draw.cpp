@@ -32,7 +32,7 @@ void Sensehat_draw::drawMaze(const Maze &m)
             {
                 senseSetPixel(i, j, this->green.color[_R], this->green.color[_G], this->green.color[_B]);
             }
-            else if (m.getCase(j, i).getState() == STATE::END)
+else if (m.getCase(j, i).getState() == STATE::END)
             {
                 senseSetPixel(i, j, this->pink.color[_R], this->pink.color[_G], this->pink.color[_B]);
             }
@@ -42,7 +42,7 @@ void Sensehat_draw::drawMaze(const Maze &m)
             }
         }
     }
-    // draw ball
+// draw ball
     senseSetPixel(m.getBallY(), m.getBallX(), this->orange.color[_R], this->orange.color[_G], this->orange.color[_B]);
 }
 
