@@ -4,5 +4,6 @@
 class Draw
 {
     virtual void drawMaze(Maze &maze) = 0;
+    virtual void clear() = 0;
 };
 #endif

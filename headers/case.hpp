@@ -10,7 +10,7 @@ enum class STATE
     EMPTY,
     VISITED,
     START,
-    END
+    END,
 };
 
 class Case

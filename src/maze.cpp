@@ -13,6 +13,8 @@ Maze::Maze(int width, int height)
 {
     this->width = width;
     this->height = height;
+    this->ball_x = 0;
+    this->ball_y = 0;
     cases.resize(height);
     for (int i = 0; i < height; i++)
     {
@@ -37,8 +39,9 @@ Maze::Maze(int width, int height)
 }
 Maze::Maze(const Maze &m)
 {
-    this->width = m.width;
-    this->height = m.height;
+    //   this->width = m.width;
+    //   this->height = m.height;
+    // TODO : redo this
     cases.resize(height);
     for (int i = 0; i < height; i++)
     {
@@ -51,6 +54,14 @@ Maze::Maze(const Maze &m)
             cases[i][j] = m.cases[i][j];
         }
     }
+}
+Maze::Maze()
+{
+    this->width = 0;
+    this->height = 0;
+    this->cases.resize(0);
+    this->ball_x = 0;
+    this->ball_y = 0;
 }
 void Maze::setWall(int x, int y, bool value)
 {
@@ -158,6 +169,8 @@ void Maze::setStart(int x, int y)
         return;
     }
     cases[y][x].setState(STATE::START);
+    this->ball_x = x;
+    this->ball_y = y;
     return;
 }
 void Maze::setEnd(int x, int y)
@@ -168,4 +181,61 @@ void Maze::setEnd(int x, int y)
     }
     cases[y][x].setState(STATE::END);
     return;
+}
+
+void Maze::move(int x, int y)
+{
+    int dx = x - ball_x;
+    int dy = y - ball_y;
+
+    // Check for walls in the path of movement
+    if (dx != 0)
+    {
+        int step = (dx > 0) ? 1 : -1;
+        for (int i = ball_x; i != x; i += step)
+        {
+            if (getWall(i + step, ball_y))
+            {
+                // Stop before the wall
+                ball_x = i;
+                return;
+            }
+        }
+    }
+    else if (dy != 0)
+    {
+        int step = (dy > 0) ? 1 : -1;
+        for (int i = ball_y; i != y; i += step)
+        {
+            if (getWall(ball_x, i + step))
+            {
+                // Stop before the wall
+                ball_y = i;
+                return;
+            }
+        }
+    }
+
+    // Update the ball's position if there are no walls blocking the movement
+    ball_x = x;
+    ball_y = y;
+
+    // Ensure the ball stays within the maze boundaries
+    if (ball_x < 0)
+        ball_x = 0;
+    else if (ball_x >= width)
+        ball_x = width - 1;
+
+    if (ball_y < 0)
+        ball_y = 0;
+    else if (ball_y >= height)
+        ball_y = height - 1;
+}
+
+int Maze::getBallX() const{
+    return ball_x;
+}
+
+int Maze::getBallY() const{
+    return ball_y;
 }

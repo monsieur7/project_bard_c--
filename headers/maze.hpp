@@ -1,9 +1,9 @@
 #include <vector>
 #include <iostream>
 #include "case.hpp"
-#include <ncurses.h>
 #ifndef MAZE_HPP
 #define MAZE_HPP
+
 class Maze
 {
 private:
@@ -17,9 +17,13 @@ private:
     void setVisited(int x, int y, bool value);
     bool getVisited(int x, int y) const;
 
+    int ball_x;
+    int ball_y;
+
 public:
     Maze(int width, int height);
     Maze(const Maze &m);
+    Maze();
     void setWall(int x, int y, bool value);
     bool getWall(int x, int y) const;
 
@@ -31,5 +35,8 @@ public:
     void generate(int x, int y, int tx, int ty);
     void setStart(int x, int y);
     void setEnd(int x, int y);
+    void move(int x, int y);
+    int getBallX() const;
+    int getBallY() const;
 };
 #endif
