@@ -19,6 +19,8 @@ private:
 
     int ball_x;
     int ball_y;
+    int end_x;
+    int end_y;
 
 public:
     Maze(int width, int height);
@@ -38,5 +40,8 @@ public:
     void move(int x, int y);
     int getBallX() const;
     int getBallY() const;
+
+    int getEndX() const;
+    int getEndY() const;
 };
 #endif

@@ -1,3 +1,4 @@
+#include "../headers/gyro.hpp"
 #include <iostream>
 #include <iomanip>
 #include <chrono>
@@ -5,43 +6,33 @@
 
 #include <console_io.h>
 #include <sensehat.h>
-#include "../headers/gyro.hpp"
 
-Gyro::Gyro() // Corrected constructor name
+Gyro::Gyro()
 {
 	this->x = 0;
 	this->y = 0;
 	this->z = 0;
-	this->status = 0;
-	std::thread(&Gyro::gyro_launch, this); // Corrected thread creation
+	updateValues();
 }
 
-Gyro::~Gyro() // Corrected destructor name
+Gyro::~Gyro()
 {
-	this->status = 0;
 }
 
-void Gyro::gyro_launch()
+void Gyro::updateValues()
 {
-	status = 1;
 	double xx, yy, zz;
-	while (status)
+	if (senseGetAccelMPSS(xx, yy, zz))
 	{
-		for (int time = 0; time < 10; time++)
-		{
-			std::this_thread::sleep_for(std::chrono::milliseconds(1));
-			std::cout << "Gyrometer in radians/s." << std::endl;
-			if (senseGetGyroRadians(xx, yy, zz))
-			{
-				x = xx;
-				y = yy;
-				z = zz;
-			}
-			else
-				std::cout << "Error. No measures." << std::endl;
-		}
+		x = xx;
+		y = yy;
+		z = zz;
 	}
-	std::cout << "end measure";
+	else
+	{
+		// std::cout << "Error. No measures." << std::endl;
+		;
+	}
 }
 
 double Gyro::getx()
@@ -57,4 +48,29 @@ double Gyro::gety()
 double Gyro::getz()
 {
 	return z;
+}
+Orientation Gyro::getOrientation()
+{
+	updateValues();
+
+	// Define a threshold to consider the board as leaned
+	const double threshold = 2;
+	std::cout << x << " " << y << std::endl;
+
+	// Check if leaned up or down
+	if (y > threshold && abs(y) > abs(x))
+		return Orientation::Right; // Inverted: Down is actually up
+	else if (y < -threshold && abs(y) > abs(x))
+		return Orientation::Left; // Inverted: Up is actually down
+
+	// Check if leaned left or right
+	if (x > threshold && abs(y) < abs(x))
+		return Orientation::Up;
+	else if (x < -threshold && abs(y) < abs(x))
+		return Orientation::Down;
+
+	// If none of the above conditions are met, return Unknown orientation
+
+	return Orientation::Unknown;
+
 }

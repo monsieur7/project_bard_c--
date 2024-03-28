@@ -15,6 +15,8 @@ Maze::Maze(int width, int height)
     this->height = height;
     this->ball_x = 0;
     this->ball_y = 0;
+    this->end_x = 0;
+    this->end_y = 0;
     cases.resize(height);
     for (int i = 0; i < height; i++)
     {
@@ -43,6 +45,8 @@ Maze::Maze(const Maze &m)
     //   this->height = m.height;
     // TODO : redo this
     cases.resize(height);
+    this->end_x = 0;
+    this->end_y = 0;
     for (int i = 0; i < height; i++)
     {
         cases[i].resize(width);
@@ -62,6 +66,8 @@ Maze::Maze()
     this->cases.resize(0);
     this->ball_x = 0;
     this->ball_y = 0;
+    this->end_x = 0;
+    this->end_y = 0;
 }
 void Maze::setWall(int x, int y, bool value)
 {
@@ -69,6 +75,10 @@ void Maze::setWall(int x, int y, bool value)
 }
 bool Maze::getWall(int x, int y) const
 {
+    if(x < 0 || y < 0 ||y >= width || x >= width){
+        return true; // we(ve hit a wall ! THE SCREEN BORDER !
+
+    }
     return cases[y][x].getWall();
 }
 void Maze::setVisited(int x, int y, bool value)
@@ -175,6 +185,8 @@ void Maze::setStart(int x, int y)
 }
 void Maze::setEnd(int x, int y)
 {
+    this->end_x = x;
+    this->end_y = y;
     if (x < 0 || x >= width || y < 0 || y >= height)
     {
         return;
@@ -183,16 +195,13 @@ void Maze::setEnd(int x, int y)
     return;
 }
 
-void Maze::move(int x, int y)
+void Maze::move(int x, int y) // x and y are relative movement !
 {
-    int dx = x - ball_x;
-    int dy = y - ball_y;
-
     // Check for walls in the path of movement
-    if (dx != 0)
+    if (x != 0)
     {
-        int step = (dx > 0) ? 1 : -1;
-        for (int i = ball_x; i != x; i += step)
+        int step = (x > 0) ? 1 : -1;
+        for (int i = ball_x; i != (ball_x+x); i += step)
         {
             if (getWall(i + step, ball_y))
             {
@@ -202,10 +211,10 @@ void Maze::move(int x, int y)
             }
         }
     }
-    else if (dy != 0)
+    else if (y != 0)
     {
-        int step = (dy > 0) ? 1 : -1;
-        for (int i = ball_y; i != y; i += step)
+        int step = (y > 0) ? 1 : -1;
+        for (int i = ball_y; i != (ball_y + y); i += step)
         {
             if (getWall(ball_x, i + step))
             {
@@ -217,8 +226,8 @@ void Maze::move(int x, int y)
     }
 
     // Update the ball's position if there are no walls blocking the movement
-    ball_x = x;
-    ball_y = y;
+    ball_x += x;
+    ball_y += y;
 
     // Ensure the ball stays within the maze boundaries
     if (ball_x < 0)
@@ -238,4 +247,10 @@ int Maze::getBallX() const{
 
 int Maze::getBallY() const{
     return ball_y;
+}
+ int Maze::getEndX() const {
+    return end_x;
+}
+int Maze::getEndY() const{
+    return end_y;
 }
